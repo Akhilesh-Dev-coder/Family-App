@@ -11,13 +11,26 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "nativewind": "latest",
-    "react-native-reanimated": "~3.17.4",
-    "react-native-safe-area-context": "5.4.0",
-    "expo": "~53.0.6",
+    "@expo/metro-config": "~54.0.2",
+    "@expo/vector-icons": "^15.0.2",
+    "@react-navigation/native": "^7.1.17",
+    "@react-navigation/stack": "^7.4.8",
+    "babel-preset-expo": "~54.0.0",
+    "expo": "^54.0.7",
+    "expo-file-system": "^19.0.14",
+    "expo-media-library": "^18.1.1",
+    "expo-sharing": "^14.0.7",
     "expo-status-bar": "~2.2.3",
+    "firebase": "^12.3.0",
+    "firebase-admin": "^13.5.0",
+    "nativewind": "latest",
     "react": "19.0.0",
-    "react-native": "0.79.5"
+    "react-native": "0.79.5",
+    "react-native-gesture-handler": "^2.28.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-worklets": "^0.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -26,10 +39,14 @@
     "eslint-config-expo": "^9.2.0",
     "eslint-config-prettier": "^10.1.2",
     "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.0",
     "typescript": "~5.8.3"
   },
   "main": "node_modules/expo/AppEntry.js",
-  "private": true
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
