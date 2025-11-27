@@ -3,35 +3,37 @@
     "name": "my-expo-app",
     "slug": "my-expo-app",
     "version": "1.0.0",
-
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
     "plugins": [],
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.r.zoro.familyapp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "42d54ef1-3648-421e-89c5-0381017f6e03"
       }
     }
   }
