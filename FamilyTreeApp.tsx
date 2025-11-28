@@ -78,6 +78,7 @@ export default function App() {
   const [greetingMessage, setGreetingMessage] = useState('');
   const [user, setUser] = useState<any>(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
+  
 
   // Animation refs
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -731,46 +732,49 @@ Favorites: ${favorites.size}`,
                 )}
 
                 {/* SPOUSE */}
-                {currentMember.spouseObj && (
-                  <View style={themedStyles.detailCard}>
-                    <Text style={themedStyles.detailLabel}>SPOUSE</Text>
-                    <TouchableOpacity
-                      style={styles.childRow}
-                      onPress={() => pushMember(currentMember.spouseObj!)}
-                    >
-                      {currentMember.spouseObj.image && typeof currentMember.spouseObj.image === 'object' ? (
-                        <Image
-                          source={currentMember.spouseObj.image}
-                          style={styles.childImage}
-                        />
-                      ) : (
-                        <View style={[styles.childImage, styles.placeholderChildImage]}>
-                          <MaterialIcons name="person" size={16} color={isDarkMode ? '#9ca3af' : '#6b7280'} />
-                        </View>
-                      )}
-                      <View style={styles.childInfo}>
-                        <Text style={themedStyles.memberName}>
-                          {currentMember.spouseObj.name}
-                        </Text>
-                        {currentMember.spouseObj.occupation && (
-                          <Text style={themedStyles.memberOccupation}>
-                            {currentMember.spouseObj.occupation}
-                          </Text>
-                        )}
-                        {currentMember.spouseObj.address && (
-                          <Text style={themedStyles.memberAddress} numberOfLines={1}>
-                            {currentMember.spouseObj.address}
-                          </Text>
-                        )}
-                      </View>
-                      <Feather
-                        name="chevron-right"
-                        size={18}
-                        color={isDarkMode ? '#d1d5db' : '#6b7280'}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                )}
+{/* SPOUSE */}
+{currentMember.spouseObj && (
+  <View style={themedStyles.detailCard}>
+    <Text style={themedStyles.detailLabel}>SPOUSE</Text>
+    <TouchableOpacity
+      style={styles.childRow}
+      onPress={() => pushMember(currentMember.spouseObj!)}
+    >
+      { (() => {
+          const spouseImageSource = getImageSource(currentMember.spouseObj!);
+          return spouseImageSource ? (
+            <Image source={spouseImageSource} style={styles.childImage} />
+          ) : (
+            <View style={[styles.childImage, styles.placeholderChildImage]}>
+              <MaterialIcons name="person" size={16} color={isDarkMode ? '#9ca3af' : '#6b7280'} />
+            </View>
+          );
+        })()
+      }
+      <View style={styles.childInfo}>
+        <Text style={themedStyles.memberName}>
+          {currentMember.spouseObj.name}
+        </Text>
+        {currentMember.spouseObj.occupation && (
+          <Text style={themedStyles.memberOccupation}>
+            {currentMember.spouseObj.occupation}
+          </Text>
+        )}
+        {currentMember.spouseObj.address && (
+          <Text style={themedStyles.memberAddress} numberOfLines={1}>
+            {currentMember.spouseObj.address}
+          </Text>
+        )}
+      </View>
+      <Feather
+        name="chevron-right"
+        size={18}
+        color={isDarkMode ? '#d1d5db' : '#6b7280'}
+      />
+    </TouchableOpacity>
+  </View>
+)}
+
 
                 {/* CHILDREN */}
                 {currentMember.children && currentMember.children.length > 0 && (
