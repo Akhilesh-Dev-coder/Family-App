@@ -189,18 +189,19 @@ export default function App() {
     setFavorites(newFavorites);
   };
 
-  const openImageModal = async (member: FamilyMember) => {
-    const memberWithImage = await loadImageForMember(member);
-    setSelectedImage(memberWithImage.image);
-    setSelectedImageName(member.name);
-    setShowImageModal(true);
-    Animated.spring(imageScaleAnim, {
-      toValue: 1.1,
-      tension: 100,
-      friction: 8,
-      useNativeDriver: true,
-    }).start();
-  };
+const openImageModal = (memberWithImage: FamilyMember) => {
+  setSelectedImage(memberWithImage.image);   // must be { uri: ... }
+  setSelectedImageName(memberWithImage.name);
+  setShowImageModal(true);
+
+  Animated.spring(imageScaleAnim, {
+    toValue: 1.1,
+    tension: 100,
+    friction: 8,
+    useNativeDriver: true,
+  }).start();
+};
+
 
   const closeImageModal = () => {
     Animated.spring(imageScaleAnim, {
@@ -843,15 +844,16 @@ Favorites: ${favorites.size}`,
               onPress={closeImageModal}
             >
               {selectedImage && (
-                <Animated.Image
-                  source={selectedImage}
-                  style={[
-                    styles.imageModalImage,
-                    { transform: [{ scale: imageScaleAnim }] },
-                  ]}
-                  resizeMode="contain"
-                />
-              )}
+  <Animated.Image
+    source={{ uri: selectedImage.uri }}
+    style={[
+      styles.imageModalImage,
+      { transform: [{ scale: imageScaleAnim }] },
+    ]}
+    resizeMode="contain"
+  />
+)}
+
             </TouchableOpacity>
           </View>
         </View>
@@ -969,7 +971,10 @@ const styles = StyleSheet.create({
   imageModalCloseButton: { padding: 8, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.2)' },
   imageModalImageContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   imageModalImageTouchable: { flex: 1, width: '100%', justifyContent: 'center', alignItems: 'center' },
-  imageModalImage: { width: width, height: width * 1.2, maxWidth: width, maxHeight: '80%' },
+  imageModalImage: {
+  width: '100%',
+  height: '100%',
+},
   childRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 8, backgroundColor: 'rgba(37, 99, 235, 0.05)', borderRadius: 12, marginTop: 8 },
   childImage: { width: 40, height: 40, borderRadius: 20, marginRight: 12 },
   placeholderChildImage: {
